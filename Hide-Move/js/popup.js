@@ -9,6 +9,7 @@
 
 $(function(){
     addBtnEvent() ;
+    play() ;
 }) ;
 function addBtnEvent(){
     var searchBtn = document.getElementById("searchBtn") ;
@@ -18,4 +19,10 @@ function addBtnEvent(){
         // alert("works") ;
         chrome.tabs.create(obj) ;
     });
+
+    var inputVideo = document.getElementById("inputVideo") ;
+    inputVideo.addEventListener('change', function() {
+        console.log(inputVideo) ; 
+    });
+
 }
