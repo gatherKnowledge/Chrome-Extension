@@ -13,7 +13,7 @@ $(function(){
 }) ;
 function addBtnEvent(){
     var searchBtn = document.getElementById("searchBtn") ;
-    var obj = {url : 'http://www.naver.com'} ;
+    var obj = {url : 'main.html'} ;
 
     searchBtn.addEventListener('click', function() {
         // alert("works") ;
@@ -22,7 +22,7 @@ function addBtnEvent(){
 
     var inputVideo = document.getElementById("inputVideo") ;
     inputVideo.addEventListener('change', function() {
-        console.log(inputVideo) ; 
+        console.log(inputVideo) ;
     });
 
 }
