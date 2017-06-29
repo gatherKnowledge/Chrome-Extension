@@ -2,22 +2,68 @@
 <html>
 <meta charset="EUC-KR">
 <head>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
     <!-- <script type="text/javascript" src="/js/movie.js"></script> -->
 </head>
-<body>
+<body style="background-image : url('/img/bg.png')">
+    <div id="toggleArea" style="width : 1120px; height : 130px;"></div>
+    <div id="naviDiv" style="width : 1120px; height : 130px;">
+        <table>
+            <colgroup>
+                <col span="5">
+            </colgroup>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button id="btnUp10" class="up" style="width :100px"> &uarr;&uarr; </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button id="btnUp" class="up" style="width :100px"> &uarr; </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="btnLeft10" class="left"> &larr;&larr; </button>
+                </td>
+                <td>
+                    <button id="btnLeft" class="left"> &larr; </button>
+                </td>
+                <td>
+                    <button id="switch" style="width :100px"> TOGGLE </button>
+                </td>
+                <td>
+                    <button id="btnRight" class="right"> &rarr; </button>
+                </td>
+                <td>
+                    <button id="btnRight10" class="right"> &rarr;&rarr; </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button id="btnDown" class="down" style="width :100px"> &darr; </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button id="btnDown10" class="down" style="width :100px"> &darr;&darr; </button>
+                </td>
+            </tr>
+        </table>
+    </div>
     <!-- <iframe src="https://www.w3schools.com"></iframe> -->
-    <!-- topm -->
-    <div style="background-color: #0000FF">
-    </div>
-    <!-- mid -->
-    <div style="background-color: #00FF00">
-        <!-- mid1 -->
-        <div></div>
-        <!-- mid2 -->
-        <div></div>
-    </div>
-    <!-- bottom -->
-    <div style="background-color: #FF0000">
+    <div id="videoDiv" style="height: 300px;width : 400px; background-color : ALICEBLUE; margin-top: 10px; margin-left: 10px;">
+        <video controls autoplay style="height : 100% ; width : 100% ;" ></video>
+        <input type="file" accept="video/*"/ id="inputVideo" />
     </div>
 </body>
 </html>

@@ -9,20 +9,28 @@
 
 $(function(){
     addBtnEvent() ;
-    play() ;
+    init() ;
 }) ;
-function addBtnEvent(){
-    var searchBtn = document.getElementById("searchBtn") ;
-    var obj = {url : 'main.html'} ;
+function init(){
+    $("#setting").click() ;
+}
 
-    searchBtn.addEventListener('click', function() {
-        // alert("works") ;
+function addBtnEvent(){
+    var setting = document.getElementById("setting") ;
+    var obj = {url : 'main.html'} ;
+    setting.addEventListener('click', function() {
         chrome.tabs.create(obj) ;
     });
 
-    var inputVideo = document.getElementById("inputVideo") ;
-    inputVideo.addEventListener('change', function() {
-        console.log(inputVideo) ;
-    });
+    $("#choice").change(function(){
+        var file = this.files[0] ;
+        var type = file.type ;
 
+        var form = document.getElementById("upload_form");
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST" , "/upload/request_url" , true);
+        xhr.send(formData);
+        console.log(formData) ;
+    }) ;
 }
