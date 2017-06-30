@@ -4,7 +4,6 @@
 <head>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
-    <!-- <script type="text/javascript" src="/js/movie.js"></script> -->
 </head>
 <body style="background-image : url('/img/bg.png')">
     <div id="toggleArea" style="width : 1120px; height : 130px;"></div>
@@ -19,12 +18,16 @@
                 <td>
                     <button id="btnUp10" class="up" style="width :100px"> &uarr;&uarr; </button>
                 </td>
+                <td><button type="button" id="controlScaleMinusHeight">-height</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <td>
                     <button id="btnUp" class="up" style="width :100px"> &uarr; </button>
+                </td>
+                <td>
+                    <button type="button" id="controlScaleMinusWidth">-width</button>
                 </td>
             </tr>
             <tr>
@@ -50,18 +53,17 @@
                 <td>
                     <button id="btnDown" class="down" style="width :100px"> &darr; </button>
                 </td>
+                <td><button type="button" id="controlScale">size up</button></td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <button id="btnDown10" class="down" style="width :100px"> &darr;&darr; </button>
-                </td>
+                <td><button id="btnWidth" >W</button></td>
+                <td><button id="btnHeight" >H</button></td>
+                <td><button id="btnDown10" class="down" style="width :100px"> &darr;&darr; </button></td>
+                <td><button type="button" id="controlScale10">size up x10</button></td>
             </tr>
         </table>
     </div>
-    <!-- <iframe src="https://www.w3schools.com"></iframe> -->
-    <div id="videoDiv" style="height: 300px;width : 400px; background-color : ALICEBLUE; margin-top: 10px; margin-left: 10px;">
+    <div id="videoDiv" style="height: 300px;width : 400px; margin-top: 10px; margin-left: 10px;">
         <video controls autoplay style="height : 100% ; width : 100% ;" ></video>
         <input type="file" accept="video/*"/ id="inputVideo" />
     </div>

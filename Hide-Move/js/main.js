@@ -1,13 +1,15 @@
-var toggleValue = -1 ;
 $(function(){
-    play() ;
     addBtnEvent() ;
     init() ;
 }) ;
 
+// Mouse over toggle control
 function init(){
     $("#toggleArea").css("display", "none" ) ;
 }
+
+// toggle control flag
+var toggleValue = -1 ;
 
 // navigation Control hide/show
 function toggleNavi(){
@@ -31,34 +33,6 @@ function toggleHover(){
     $("#naviDiv").css("display", "block") ;
 }
 
-// movie play
-function play(){
-    (function localFileVideoPlayer() {
-        'use strict' ;
-        var URL = window.URL || window.webkitURL ;
-        var playSelectedFile = function (event) {
-            console.log(this) ;
-            var file = this.files[0] ;
-            var type = file.type ;
-            var videoNode = document.querySelector('video') ;
-            var canPlay = videoNode.canPlayType(type) ;
-
-            if (canPlay === '') canPlay = 'no' ;
-            var message = 'Can play type "' + type + '": ' + canPlay ;
-            var isError = canPlay === 'no' ;
-
-            if (isError) {
-              return
-            }
-
-            var fileURL = URL.createObjectURL(file) ;
-            videoNode.src = fileURL
-         }
-         var inputNode = document.getElementById("inputVideo") ;
-         inputNode.addEventListener('change', playSelectedFile, false) ;
-    })()
-}
-
 // Add Button event
 function addBtnEvent(){
     var $btnRight = $("#btnRight") ;
@@ -69,6 +43,7 @@ function addBtnEvent(){
     var $btnUp10 = $("#btnUp10") ;
     var $btnDown = $("#btnDown") ;
     var $btnDown10 = $("#btnDown10") ;
+
     $("#toggleArea").hover(function(){
         if( toggleValue < 0 ) {
             toggleHover() ;
@@ -77,6 +52,9 @@ function addBtnEvent(){
     $("#switch").click(function(){
         toggleValue = toggleValue * -1 ;
         toggleNavi() ;
+    }) ;
+    $("#inputVideo").click(function(){
+        $("#inputVideo").css("display", "none") ;
     }) ;
     //right
     $btnRight.click(function(){
@@ -98,6 +76,35 @@ function addBtnEvent(){
         moveDiv($btnDown.attr("class")) ;}) ;
     $btnDown10.click(function(){
         moveMul10($btnDown10.attr("class")) ;}) ;
+
+    // SCALE
+    var $controlScale = $("#controlScale") ;
+    $controlScale.click(function(){
+        controlScale() ;
+    } ) ;
+    var $controlScale10 = $("#controlScale10") ;
+    $controlScale10.click(function(){
+        controlMul10() ;
+    } ) ;
+
+    // size control
+    var $btnWidth = $("#btnWidth") ;
+    var $btnHeight = $("#btnHeight") ;
+    var $controlScaleMinusWidth = $("#controlScaleMinusWidth") ;
+    var $controlScaleMinusHeight = $("#controlScaleMinusHeight") ;
+
+    $btnWidth.click(function(){
+        widthControl() ;
+    } ) ;
+    $btnHeight.click(function(){
+        heightControl() ;
+    } ) ;
+    $controlScaleMinusWidth.click(function(){
+        widthMinusControl() ;
+    } ) ;
+    $controlScaleMinusHeight.click(function(){
+        heightMinusControl() ;
+    } ) ;
 }
 
 // video moving
@@ -107,41 +114,80 @@ function moveDiv(direct){
     switch (direct) {
         case "right" :
             val = $videoDiv.css("margin-left") ;
-            // alert("기존 val : " + val) ;
-            val = val.substring(0, val.length-2);
+            val = removePx(val) ;
             val = Number(val) + 1 ;
             $videoDiv.css("margin-left", val+"px") ;
-            // alert("증가 val : " + val) ;
             break;
         case  "left" :
             val = $videoDiv.css("margin-left") ;
-            // alert("기존 val : " + val) ;
-            val = val.substring(0, val.length-2);
+            val = removePx(val) ;
             val = Number(val) - 1 ;
             $videoDiv.css("margin-left", val+"px") ;
-            // alert("증가 val : " + val) ;
             break;
         case  "up" :
             val = $videoDiv.css("margin-top") ;
-            // alert("기존 val : " + val) ;
-            val = val.substring(0, val.length-2);
+            val = removePx(val) ;
             val = Number(val) - 1 ;
             $videoDiv.css("margin-top", val+"px") ;
-            // alert("증가 val : " + val) ;
             break;
         case  "down":
             val = $videoDiv.css("margin-top") ;
-            // alert("기존 val : " + val) ;
-            val = val.substring(0, val.length-2);
+            val = removePx(val) ;
             val = Number(val) + 1 ;
             $videoDiv.css("margin-top", val+"px") ;
-            // alert("증가 val : " + val) ;
             break;
     }
 }
 
+// x10 times
 function moveMul10(direct){
     for(var i = 0 ; i < 10 ; i++) {
         moveDiv(direct);
     }
+}
+
+function widthControl() {
+    var $videoDiv = $("#videoDiv") ;
+    var width = $videoDiv.css("width") ;
+    width = removePx(width) ;
+    width = Number(width) + 10 ;
+    $videoDiv.css("width", width + "px") ;
+}
+function heightControl() {
+    var $videoDiv = $("#videoDiv") ;
+    var height = $videoDiv.css("height") ;
+    height = removePx(height) ;
+    height = Number(height) + 10 ;
+    $videoDiv.css("height", height + "px") ;
+}
+function widthMinusControl() {
+    var $videoDiv = $("#videoDiv") ;
+    var width = $videoDiv.css("width") ;
+    width = removePx(width) ;
+    width = Number(width) - 10 ;
+    $videoDiv.css("width", width + "px") ;
+}
+function heightMinusControl() {
+    var $videoDiv = $("#videoDiv") ;
+    var height = $videoDiv.css("height") ;
+    height = removePx(height) ;
+    height = Number(height) - 10 ;
+    $videoDiv.css("height", height + "px") ;
+}
+// Size up
+function controlScale() {
+    widthControl() ;
+    heightControl() ;
+}
+
+// x10 times
+function controlMul10() {
+    for(var i = 0 ; i < 10 ; i++) {
+        controlScale() ;
+    }
+}
+// input 100px -> 100
+function removePx(str) {
+    str = str.substr(0, str.length - 2) ;
+    return str ;
 }

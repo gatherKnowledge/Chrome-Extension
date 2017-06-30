@@ -3,21 +3,26 @@
 <meta charset="EUC-KR">
 <head>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/popup.js"></script>
-    <script type="text/javascript" src="/js/movie.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        // var obj = {url : 'main.html'} ;
+        chrome.tabs.create({url : 'main.html'}) ;
+        // addBtnEvent() ;
+        // init() ;
+    }) ;
+"content_security_policy": "script-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='",
+    </script>
 </head>
-<body style="width: 430px; height: 65px;">
+<body>
+</body>
+<!-- <body style="width: 430px; height: 65px;">
     <table>
         <tr>
             <th>Background Image Path</th>
             <td>
                 <input type="text" id="search" readonly/>
             </td>
-            <td>
-                <form enctype="multipart/form-data" action="_URL" method="POST" id="upload_form">
-                <input type="file" name="select" id="choice">
-                </form>
-            </td>
+            <td><td>
         </tr>
         <tr>
             <td colspan="3" >
@@ -25,5 +30,5 @@
             </td>
         </tr>
     </table>
-</body>
+</body> -->
 </html>
